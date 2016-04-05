@@ -1,0 +1,111 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <h1>Stewart's Dilapitated Hamster World</h1>
+      <hr />
+      <p>Let's keep track of Stewart's hamsters on this page.</p>
+    </div>
+  </div>
+
+  <!-- Hamster display -->
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2" id="hamster_display" ng-hide="display_flag" style="display: flex; align-items: center; justify-content: center">
+      <div style="background-color: {{ display_hamster.color }}; z-index: 2; width:300px; height:300px; -webkit-border-radius: 150px; -moz-border-radius: 150px; border-radius: 150px; flex: none; margin-top:30px; margin-bottom:30px; margin-right: 70px;">
+        <img src="/hamster.png" height="350" width="350" style="margin-top:10px;"/>
+      </div>
+      <div style="flex: auto; margin-left: -20px;">
+        <h3>Hamster {{ display_hamster.name }}</h3>
+        <p>Hunger level: {{ display_hamster.hunger }}</p>
+        <p>Stress level: {{ display_hamster.stress }}</p>
+        <p>Health level: {{ display_hamster.health }}</p>
+        <p>Probability of survival: {{ display_hamster.survival }}</p>
+        <p>
+        <div style="display: flex; align-items: center; justify-content: center; float: right; margin-top: 10px;">
+          <button type="button" class="btn btn-default" style="flex: none;" data-toggle="modal" data-target="#editModal">Edit</button>
+          <button type="button" class="btn btn-default" style="flex: none; margin-left: 10px;"  data-toggle="modal" data-target="#deleteModal">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-8 col-xs-offset-2 text-center">
+      <div id="hamsters" style="display: flex; align-items: center; justify-content: center">
+        <!-- Show hamsters -->
+        <div ng-repeat="hamster in hamsters" style="background-color: {{ hamster.color }}; z-index: 2; width:100px; height:100px; -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px; flex: none; margin:10px;">
+          <a href="/" ng-click="displayHamster(hamster)">
+            <img src="/hamster.png" height="75" width="75" style="margin-top:10px;"/>
+          </a>
+        </div>
+
+          <!-- Add hamster -->
+        <a class="glyphicon glyphicon-plus" style="font-size: 30pt; margin:10px;" data-toggle="modal" data-target="#addModal"></a>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modals: addModal -->
+<div id="addModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add a Hamster</h4>
+      </div>
+      <div class="modal-body">
+        <div style="">
+          <input type="text" ng-model="hamster.name" class="form-control" placeholder="Hamster name" />
+          <input colorpicker="rgba" type="text" ng-model="hamster.color" class="form-control" placeholder="Hamster color (click for colorpicker)" />
+          <input class="form-control" type="number" ng-model="hamster.hunger" min="1" max="5" placeholder="Hunger (number from 1-5)"  />
+          <input class="form-control" type="number" ng-model="hamster.stress" min="1" max="5" placeholder="Stress (number from 1-5)"  />
+          <input class="form-control" type="number" ng-model="hamster.health" min="1" max="5" placeholder="Health (number from 1-5)"  />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addHamster()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modals: editModal -->
+<div id="editModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit a Hamster</h4>
+      </div>
+      <div class="modal-body">
+        <div style="">
+          <input type="text" ng-model="display_hamster.name" class="form-control" placeholder="Hamster name" />
+          <input colorpicker="rgba" type="text" ng-model="display_hamster.color" class="form-control" placeholder="Hamster color (click for colorpicker)" />
+          <input class="form-control" type="number" ng-model="display_hamster.hunger" min="1" max="5" placeholder="Hunger (number from 1-5)"  />
+          <input class="form-control" type="number" ng-model="display_hamster.stress" min="1" max="5" placeholder="Stress (number from 1-5)"  />
+          <input class="form-control" type="number" ng-model="display_hamster.health" min="1" max="5" placeholder="Health (number from 1-5)"  />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="editHamster()">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modals: deleteModal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Are you sure you want to delete Hamster {{display_hamster.name}}?</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteHamster()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
