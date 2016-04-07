@@ -26,6 +26,7 @@ angular.module("hamsterworld").controller("MainController", function($scope, $ht
     MainService.putHamster($scope.display_hamster, function(data) {
       if (data) {
         /* Q: Should server return what was edited to verify on the client side? */
+        $scope.display_hamster = data;
         $scope.getHamsters();
       }
     });

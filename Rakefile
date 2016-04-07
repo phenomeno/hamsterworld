@@ -1,3 +1,5 @@
+require './bin/app'
+require 'sinatra/activerecord/rake'
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|
