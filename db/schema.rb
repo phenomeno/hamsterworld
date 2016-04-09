@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20160406015310) do
 
   create_table "hamsters", force: :cascade do |t|
-    t.string  "name"
-    t.string  "color"
-    t.integer "hunger"
-    t.integer "stress"
-    t.integer "health"
-    t.float   "survival"
+    t.string  "name",     limit: 255
+    t.string  "color",    limit: 255
+    t.integer "hunger",   limit: 4
+    t.integer "stress",   limit: 4
+    t.integer "health",   limit: 4
+    t.float   "survival", limit: 24
   end
 
 end

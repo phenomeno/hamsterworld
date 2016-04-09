@@ -30,18 +30,15 @@
 
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2 text-center">
-      <div id="hamsters" style="display: flex; align-items: center; justify-content: center">
+      <div id="hamsters" style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
         <!-- Show hamsters -->
         <div ng-repeat="hamster in hamsters" style="background-color: {{ hamster.color }}; z-index: 2; width:100px; height:100px; -webkit-border-radius: 50px; -moz-border-radius: 50px; border-radius: 50px; flex: none; margin:10px;">
           <a href="/" ng-click="displayHamster(hamster)">
             <img src="/hamster.png" height="75" width="75" style="margin-top:10px;"/>
           </a>
         </div>
-
           <!-- Add hamster -->
         <a class="glyphicon glyphicon-plus" style="font-size: 30pt; margin:10px;" data-toggle="modal" data-target="#addModal"></a>
-
-
       </div>
     </div>
   </div>

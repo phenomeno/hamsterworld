@@ -5,14 +5,10 @@ require './config/environments'
 require './models'
 
 
-# set :environment, ARGV[0]
-set :environment, :development
 set :static, true
 set :public_folder, "static"
 set :views, "views"
 set :show_exceptions, :after_handler
-
-register Sinatra::ActiveRecordExtension
 
 error 500 do
   JSON.generate({'ok' => false })
@@ -44,8 +40,8 @@ post '/api/v1/hamsters' do
   stress = data["stress"] || 1
   health = data["health"] || 3
   survival = rand(1..101)/100.0
-  Hamster.create(name: name, color: color, hunger: hunger, stress: stress, health: health, survival: survival)
-  JSON.generate({ 'ok' => true })
+  h = Hamster.create(name: name, color: color, hunger: hunger, stress: stress, health: health, survival: survival)
+  JSON.generate({ 'ok' => h.id })
 end
 
 # Put - replace whole hamster
@@ -65,6 +61,7 @@ put '/api/v1/hamsters/:id' do
     existing_hamster.update(name: name, color: color, hunger: hunger, stress: stress, health: health, survival: survival)
     existing_hamster.to_json
   else
+    # FIXME Return no ID message
     raise 500
   end
 end

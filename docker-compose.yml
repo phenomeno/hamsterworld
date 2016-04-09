@@ -1,0 +1,15 @@
+db:
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=test1234
+    - MYSQL_DATABASE=hamster_db
+    - MYSQL_USER=user
+    - MYSQL_PASSWORD=test1234
+
+web:
+  build: .
+  ports:
+    - "80:80"
+  restart: always
+  links:
+    - db

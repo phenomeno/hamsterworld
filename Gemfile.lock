@@ -23,6 +23,7 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
     minitest (5.8.4)
+    mysql2 (0.4.3)
     power_assert (0.2.7)
     rack (1.6.4)
     rack-protection (1.5.3)
@@ -55,6 +56,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  json
+  mysql2
   rack-test
   rake
   rerun
